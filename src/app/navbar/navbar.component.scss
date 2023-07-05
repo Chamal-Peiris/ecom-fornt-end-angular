@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
+.navbar {
+  background-color: #333;
+  padding: 0.5rem 1rem;
+
+  .container {
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+    align-items: center;
+
+    .logo {
+      color: #fff;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s ease-in-out;
+
+      &:hover {
+        color: #bbb;
+      }
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+
+      a {
+        color: #fff;
+        text-decoration: none;
+        padding: 0.5rem;
+        transition: background-color 0.3s ease-in-out;
+
+        &:hover {
+          background-color: #444;
+            cursor: pointer;
+        }
+
+        &.active {
+          background-color: #555;
+        }
+      }
+
+      .cart {
+        display: flex;
+        align-items: center;
+        margin-left: 1rem;
+
+        a {
+          display: flex;
+          align-items: center;
+          color: #fff;
+          text-decoration: none;
+          padding: 0.5rem;
+          transition: background-color 0.3s ease-in-out;
+
+          &:hover {
+            background-color: #444;
+          }
+
+          .fa-shopping-cart {
+            margin-right: 0.5rem;
+          }
+        }
+
+        .cart-label {
+          font-size: 0.875rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 767px) {
+    .container {
+      flex-direction: column;
+
+      .menu {
+        flex-direction: column;
+        align-items: center;
+
+        .cart {
+          margin-top: 1rem;
+        }
+      }
+    }
+  }
+}
