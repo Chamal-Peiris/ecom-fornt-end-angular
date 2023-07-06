@@ -6,19 +6,25 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
+import { SignupComponent } from './signup/signup.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import {UserService} from "./service/user.service";
+import {HttpClientModule} from "@angular/common/http";
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    SignupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
