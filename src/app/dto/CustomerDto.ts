@@ -1,6 +1,4 @@
 export class CustomerDto {
- fullName: string | undefined;
- email: string | undefined;
- mobile: string | undefined;
- address : string | undefined;
+  constructor(public fullName:string| null =null,public email: string | null =null,public mobile:string | null = null,public address:string | null =null) {
+  }
 }
