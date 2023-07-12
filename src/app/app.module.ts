@@ -12,12 +12,14 @@ import {UserService} from "./service/user.service";
 import {CustomerService} from "./service/customer.service";
 import {HttpClientModule} from "@angular/common/http";
 import { AuthService } from './service/auth.service';
+import { DashboardComponent } from './dashboard/dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     NavbarComponent,
     SignupComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,

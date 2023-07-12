@@ -1,4 +1,4 @@
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import {catchError, map, Observable } from 'rxjs';
 import { environment } from 'src/environment';
@@ -23,9 +23,9 @@ export class AuthService {
             throw new Error('Invalid authentication response');
           }
         }),
-        catchError((errorResponse: HttpResponse<any>) => {
-          const statusCode = errorResponse.status;
-          const errorMessage = errorResponse.body;
+        catchError((errorResponse: HttpErrorResponse) => {
+          const statusCode = errorResponse.error.status;
+          const errorMessage = errorResponse.error.message;
           // Throw an exception with error message and status code
           alert(`Authentication failed - Status Code: ${statusCode}, Message: ${errorMessage}`);
           throw new Error(`Authentication failed - Status Code: ${statusCode}, Message: ${errorMessage}`);

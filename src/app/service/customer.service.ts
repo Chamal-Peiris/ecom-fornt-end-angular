@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {environment} from "../../environment";
 import {CustomerDto} from '../dto/CustomerDto';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -19,5 +20,12 @@ export class CustomerService {
   saveCustomer(customer: CustomerDto): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
     return this.httpService.post(this.apiBaseUrl + "/customer/save",customer,{headers});
+  }
+
+  me():Observable<any>{
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
+    return this.httpService.get(this.apiBaseUrl+"/customer/me",{headers}).pipe(
+      map(response => response as CustomerDto) 
+    );
   }
 }
