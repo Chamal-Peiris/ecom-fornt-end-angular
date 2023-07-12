@@ -12,20 +12,19 @@ export class CustomerService {
 
   apiBaseUrl: string = environment.apiBaseUrl;
   token: string | null = null;
-
+  headers:HttpHeaders;
   constructor(private httpService: HttpClient) {
     this.token = localStorage.getItem('token');
+    this.headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
   }
 
   saveCustomer(customer: CustomerDto): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.httpService.post(this.apiBaseUrl + "/customer/save",customer,{headers});
+    return this.httpService.post(this.apiBaseUrl + "/customer/save",customer,{headers:this.headers});
   }
 
   me():Observable<any>{
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.token}`);
-    return this.httpService.get(this.apiBaseUrl+"/customer/me",{headers}).pipe(
-      map(response => response as CustomerDto) 
+    return this.httpService.get(this.apiBaseUrl+"/customer/me",{headers: this.headers}).pipe(
+      map(response => response as CustomerDto)
     );
   }
 }
