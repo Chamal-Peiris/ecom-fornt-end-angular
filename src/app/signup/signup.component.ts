@@ -29,6 +29,10 @@ export class SignupComponent {
   constructor(private userService: UserService, private authService: AuthService, private customerService: CustomerService, private formBuilder: FormBuilder) {
   }
 
+  ngOnInit(){
+    console.log('Hello World');
+  }
+
   saveUser() {
     if (this.signupForm.value.txtPass != null && this.signupForm.value.txtUName != null) {
 
@@ -50,7 +54,7 @@ export class SignupComponent {
               localStorage.setItem('token', token);
 
               //Logic to save the customer
-              var customerDto = new CustomerDto(this.signupForm.value.txtName, this.signupForm.value.txtEmail, this.signupForm.value.txtMob, this.signupForm.value.txtAdd);
+              var customerDto = new CustomerDto(null,this.signupForm.value.txtName, this.signupForm.value.txtEmail, this.signupForm.value.txtMob, this.signupForm.value.txtAdd);
 
               this.customerService.saveCustomer(customerDto).subscribe(
                 (response: CustomerDto) => {

@@ -13,6 +13,9 @@ import {CustomerService} from "./service/customer.service";
 import {HttpClientModule} from "@angular/common/http";
 import { AuthService } from './service/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProductComponent } from './product/product.component';
+import { AccountComponent } from './account/account.component';
+import { ProductService } from './service/product.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +23,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     NavbarComponent,
     SignupComponent,
     DashboardComponent,
+    ProductComponent,
+    AccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,7 +33,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UserService,CustomerService,AuthService],
+  providers: [UserService,CustomerService,AuthService,ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,6 @@
+<app-navbar></app-navbar>
+<ul>
+  <li *ngFor="let dto of productList">
+    {{ dto.productName }} - {{ dto.availableQuantity }} - {{ dto.sellingPrice }}
+  </li>
+</ul>
