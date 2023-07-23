@@ -1,6 +1,10 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { CartDto } from '../dto/CartDto';
 import { ProductDto } from '../dto/ProductDto';
+import { CartService } from '../service/cart.service';
 import { ProductService } from '../service/product.service';
 
 @Component({
@@ -11,8 +15,12 @@ import { ProductService } from '../service/product.service';
 export class ProductComponent {
 
   productList: ProductDto[]=[];
-  receivedId: string|null =null;
-  constructor(private productService:ProductService,private route: ActivatedRoute) {
+  receivedId: number|null =null;
+
+  cartForm = this.formBuilder.group({
+    txtQuantity: null,
+  });
+  constructor(private productService:ProductService,private route: ActivatedRoute,private formBuilder: FormBuilder,private cartService:CartService) {
   }
   ngOnInit(){
     this.getProducts();
@@ -26,10 +34,27 @@ export class ProductComponent {
     this.productService.getProducts().subscribe(
       (data:ProductDto[])=>{
         this.productList=data;
-        console.log(this.productList);
+
       },
       (error)=>{
         console.log("Error Fetching Dto List",error);
+      }
+    )
+  }
+
+  addCart(productDto:ProductDto){
+    let cartDto = new CartDto(null,this.receivedId,productDto.id,this.cartForm.value.txtQuantity,productDto.buyingPrice);
+
+    this.cartService.saveCart(cartDto).subscribe(
+      (response)=>{
+        alert('Added to cart');
+      },
+      (error: HttpErrorResponse) => {
+        if (error.error instanceof ErrorEvent) {
+          alert(error.error.message)
+        } else {
+          alert(`Error With Cause ${error.error.message} and status ${error.error.status}`)
+        }
       }
     )
   }

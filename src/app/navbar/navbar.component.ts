@@ -16,7 +16,6 @@ export class NavbarComponent {
   ngOnInit(){
     this.customerService.me().subscribe(
       (customer: CustomerDto) => {
-        console.log(customer);
         this.customerId=customer.id;
       },
       (error)=>{

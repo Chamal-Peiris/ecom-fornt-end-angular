@@ -1,6 +1,13 @@
 <app-navbar></app-navbar>
-<ul>
-  <li *ngFor="let dto of productList">
-    {{ dto.productName }} - {{ dto.availableQuantity }} - {{ dto.sellingPrice }}
-  </li>
-</ul>
+<!-- Assuming productList is an array of objects with properties: productName, availableQuantity, and sellingPrice -->
+<div *ngFor="let dto of productList" style="display: inline-block;border: black solid 0.5px;border-radius: 10%;margin: 5px 2px 2px ;padding: 5px">
+  <form [formGroup]="cartForm" (ngSubmit)="addCart(dto)">
+    <p>
+      {{ dto.productName }} - {{ dto.buyingPrice }}<span> Rs.</span>
+    </p>
+    <label for="quantity">Quantity:</label>
+    <input formControlName="txtQuantity" type="number" id="quantity" name="quantity" ><br>
+    <button class="btn" type="submit" style="float:right; background-color: lawngreen">Add to cart</button>
+  </form>
+</div>
+

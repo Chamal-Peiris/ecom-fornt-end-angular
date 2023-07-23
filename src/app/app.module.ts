@@ -16,6 +16,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductComponent } from './product/product.component';
 import { AccountComponent } from './account/account.component';
 import { ProductService } from './service/product.service';
+import { CartService } from './service/cart.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +34,7 @@ import { ProductService } from './service/product.service';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UserService,CustomerService,AuthService,ProductService],
+  providers: [UserService,CustomerService,AuthService,ProductService,CartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
