@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { SharedserviceService } from '../service/sharedservice.service';
 
@@ -9,7 +9,7 @@ import { SharedserviceService } from '../service/sharedservice.service';
 })
 export class CartComponent {
 
-  showPopup = false;
+  @Input() showPopup: boolean | undefined;
   customerId:number|null=null;
   cartItems: any[] = []; // Replace this with your actual cart items
 

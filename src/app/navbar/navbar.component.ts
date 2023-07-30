@@ -13,6 +13,7 @@ import { SharedserviceService } from '../service/sharedservice.service';
 export class NavbarComponent {
   customerId: number  | null=null;
   cartCount: number|null=null;
+  showCart: boolean = false;
 
   constructor(private customerService:CustomerService,private router:Router,private cartService:CartService,private sharedService:SharedserviceService) {
   }
@@ -28,10 +29,11 @@ export class NavbarComponent {
     this.sharedService.sharedValue$.subscribe((value) => {
       this.cartCount = value;
     });
-    
+
   }
 
   changePopup() {
-    this.sharedService.updateCartDisplayBoolean(true);
+   // this.sharedService.updateCartDisplayBoolean(true);
+    this.showCart = !this.showCart;
   }
 }
