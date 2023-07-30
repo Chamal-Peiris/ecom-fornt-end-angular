@@ -6,7 +6,7 @@ import { CartDto } from '../dto/CartDto';
 import { ProductDto } from '../dto/ProductDto';
 import { CartService } from '../service/cart.service';
 import { ProductService } from '../service/product.service';
-
+import { SharedserviceService } from '../service/sharedservice.service';
 @Component({
   selector: 'app-product',
   templateUrl: './product.component.html',
@@ -17,10 +17,12 @@ export class ProductComponent {
   productList: ProductDto[]=[];
   receivedId: number|null =null;
 
+  cartValue = 0;
   cartForm = this.formBuilder.group({
     txtQuantity: null,
   });
-  constructor(private productService:ProductService,private route: ActivatedRoute,private formBuilder: FormBuilder,private cartService:CartService) {
+  // @ts-ignore
+  constructor(private productService:ProductService,private route: ActivatedRoute,private formBuilder: FormBuilder,private cartService:CartService,private sharedService:SharedserviceService) {
   }
   ngOnInit(){
     this.getProducts();
@@ -45,9 +47,12 @@ export class ProductComponent {
   addCart(productDto:ProductDto){
     let cartDto = new CartDto(null,this.receivedId,productDto.id,this.cartForm.value.txtQuantity,productDto.buyingPrice);
 
+    this.cartValue++;
+    this.sharedService.updateSharedValue(this.cartValue);
     this.cartService.saveCart(cartDto).subscribe(
       (response)=>{
         alert('Added to cart');
+
       },
       (error: HttpErrorResponse) => {
         if (error.error instanceof ErrorEvent) {

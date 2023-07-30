@@ -7,11 +7,12 @@
         <a routerLink="/product/{{customerId}}" routerLinkActive="active">Product</a>
         <a routerLink="/account" routerLinkActive="active">Account</a>
         <div class="cart">
-          <a routerLink="/cart" routerLinkActive="active"><span class="material-symbols-outlined" >shopping_cart_checkout</span><span>1</span>
+          <a routerLink="#" routerLinkActive="active" (click)="changePopup()"><span class="material-symbols-outlined" >shopping_cart_checkout</span><span>{{cartCount}}</span>
           </a>
         </div>
       </div>
     </div>
   </div>
 </nav>
+<app-cart></app-cart>
 

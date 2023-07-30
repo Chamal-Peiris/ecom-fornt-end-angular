@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SharedserviceService } from '../service/sharedservice.service';
 
 @Component({
   selector: 'app-cart',
@@ -12,11 +13,12 @@ export class CartComponent {
   customerId:number|null=null;
   cartItems: any[] = []; // Replace this with your actual cart items
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,private sharedService:SharedserviceService) {}
 
   ngOnInit(): void {
-    const showPopupString = sessionStorage.getItem('showPopup');
-    this.showPopup = showPopupString === 'true';
+    this.sharedService.cartDisplayValue$.subscribe((value) => {
+      this.showPopup=value;
+    });
   }
   openPopup(): void {
     this.showPopup = true;
@@ -24,6 +26,5 @@ export class CartComponent {
 
   closePopup(): void {
     this.showPopup = false;
-    sessionStorage.setItem('showPopup',JSON.stringify(false))
   }
 }

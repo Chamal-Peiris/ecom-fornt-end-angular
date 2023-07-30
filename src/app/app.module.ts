@@ -18,6 +18,8 @@ import { AccountComponent } from './account/account.component';
 import { ProductService } from './service/product.service';
 import { CartService } from './service/cart.service';
 import { CartComponent } from './cart/cart.component';
+import { SharedserviceService } from './service/sharedservice.service';
+// @ts-ignore
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,7 @@ import { CartComponent } from './cart/cart.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [UserService,CustomerService,AuthService,ProductService,CartService],
+  providers: [UserService,CustomerService,AuthService,ProductService,CartService,SharedserviceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

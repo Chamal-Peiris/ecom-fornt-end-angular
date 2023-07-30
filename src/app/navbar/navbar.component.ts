@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { CustomerDto } from '../dto/CustomerDto';
 import { CartService } from '../service/cart.service';
 import { CustomerService } from '../service/customer.service';
+import { SharedserviceService } from '../service/sharedservice.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,8 +12,9 @@ import { CustomerService } from '../service/customer.service';
 })
 export class NavbarComponent {
   customerId: number  | null=null;
+  cartCount: number|null=null;
 
-  constructor(private customerService:CustomerService,private router:Router,private cartService:CartService) {
+  constructor(private customerService:CustomerService,private router:Router,private cartService:CartService,private sharedService:SharedserviceService) {
   }
   ngOnInit(){
     this.customerService.me().subscribe(
@@ -23,6 +25,13 @@ export class NavbarComponent {
         this.router.navigate(["/login"]);
       }
     )
+    this.sharedService.sharedValue$.subscribe((value) => {
+      this.cartCount = value;
+    });
+    
   }
-  
+
+  changePopup() {
+    this.sharedService.updateCartDisplayBoolean(true);
+  }
 }
