@@ -1,6 +1,7 @@
 import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { CustomerDto } from '../dto/CustomerDto';
+import { CartService } from '../service/cart.service';
 import { CustomerService } from '../service/customer.service';
 
 @Component({
@@ -11,7 +12,7 @@ import { CustomerService } from '../service/customer.service';
 export class NavbarComponent {
   customerId: number  | null=null;
 
-  constructor(private customerService:CustomerService,private router:Router) {
+  constructor(private customerService:CustomerService,private router:Router,private cartService:CartService) {
   }
   ngOnInit(){
     this.customerService.me().subscribe(
@@ -23,4 +24,5 @@ export class NavbarComponent {
       }
     )
   }
+  
 }

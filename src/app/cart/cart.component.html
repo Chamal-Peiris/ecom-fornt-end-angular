@@ -1,0 +1,11 @@
+<app-navbar></app-navbar>
+<div class="cart-popup-container" [hidden]="!showPopup">
+  <div class="cart-popup">
+    <!-- Your cart items and content go here -->
+    <h3>Cart Items</h3>
+    <ul>
+      <li *ngFor="let item of cartItems">{{ item.name }} - {{ item.price }}</li>
+    </ul>
+    <button class="btn btn-primary" (click)="closePopup()">Close</button>
+  </div>
+</div>

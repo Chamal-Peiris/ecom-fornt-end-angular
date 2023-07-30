@@ -17,6 +17,7 @@ import { ProductComponent } from './product/product.component';
 import { AccountComponent } from './account/account.component';
 import { ProductService } from './service/product.service';
 import { CartService } from './service/cart.service';
+import { CartComponent } from './cart/cart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +27,7 @@ import { CartService } from './service/cart.service';
     DashboardComponent,
     ProductComponent,
     AccountComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
